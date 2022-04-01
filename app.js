@@ -37,7 +37,7 @@ fetchAllPokemons().then((response) => allPokemons = response).finally(() => {con
 
 app.get('/api/:pokemon', async(req, res) => {
     const namedPokemon = req.params.pokemon;
-    res.send(allPokemons.filter(pokemon => pokemon.name.includes(namedPokemon)))
+    res.send(allPokemons.filter(pokemon => pokemon.name.startsWith(namedPokemon) && !pokemon.name.includes('-')))
 })
 
 // Pokemons to show
