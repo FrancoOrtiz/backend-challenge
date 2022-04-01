@@ -10,7 +10,7 @@ app.listen(3002, () => {
     console.log('server running on port', 3002);
 });
 
-// FETCH DE TODOS LOS POKEMONS
+// AllPokemons fetch
 
 const fetchAllPokemons = async() => {
     const peticion = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=1200`)
@@ -33,15 +33,14 @@ const fetchAllPokemons = async() => {
 let allPokemons = [];
 fetchAllPokemons().then((response) => allPokemons = response).finally(() => {console.log('allPokemons load')});
 
-// BUSQUEDA POR NOMBRE
+// Search by Name
 
 app.get('/api/:pokemon', async(req, res) => {
-
-    const pokemon = req.params.pokemon;
-    
+    const namedPokemon = req.params.pokemon;
+    res.send(allPokemons.filter(pokemon => pokemon.name.includes(namedPokemon)))
 })
 
-// POKEMONS A MOSTRAR
+// Pokemons to show
 
 app.get('/api/pokemons/:page',(req, res) => {
     const offset = req.params.page * 3;
