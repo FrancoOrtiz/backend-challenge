@@ -17,3 +17,5 @@ app.get("/api/:pokemon", pokemonByName);
 // Pokemons to show
 
 app.get("/api/pokemons/:page", pokemonByPage);
+
+export default app;
