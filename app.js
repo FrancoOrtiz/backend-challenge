@@ -11,7 +11,7 @@ const swaggerOptions = {
     info: {
       title: "Pokemon API",
       version: "1.0.0",
-      description: "A sample API",
+      description: "The API allows the search and filtering of Pokemons",
     },
   },
   apis: ["app.js"],
@@ -32,6 +32,13 @@ app.listen(3002, () => {
  * /api/{pokemon}:
  *    get:
  *      description: Get a Pokemon by name
+ *      parameters:
+ *      - in: path
+ *        name: pokemon
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: Name of the Pokemon to get
  *      responses:
  *        200:
  *          description: Sucess
@@ -43,7 +50,14 @@ app.get("/api/:pokemon", pokemonByName);
  * @swagger
  * /api/pokemons/{page}:
  *    get:
- *      description: Get a Pokemon by name
+ *      description: Get Pokemons to show
+ *      parameters:
+ *      - in: path
+ *        name: page
+ *        schema:
+ *          type: integer
+ *        required: true
+ *        description: Number of Page to get Pokemons
  *      responses:
  *        200:
  *          description: Sucess
